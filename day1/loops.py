@@ -33,6 +33,10 @@ for name in names:
 else:
     print("name not found")
 
+# List comprehension
+output = [5*value for value in range(1,11)]
+print("Printing List comprehension result: ", output)
+
 # while..else loops
 guess = 0
 answer = 5
