@@ -22,8 +22,10 @@ for x in range(0,10,2):
 
 # for..else
 print(" ")
-print("Checking if an array has a name that starts with A:", end=" ")
 names = ["Hamdi", "Achref"]
+names_copy = names[:]
+print("Copy of names list", names_copy)
+print("Checking if an array has a name that starts with A:", end=" ")
 for name in names:
     if name.startswith("A"):
         print("Found")
@@ -38,4 +40,4 @@ answer = 5
 while answer != guess:
     guess = int(input("Guess: "))
 else:
-    print("Congratz you guessed the answer", type(guess))
+    print("Congratz you guessed the answer")
