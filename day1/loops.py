@@ -1,18 +1,18 @@
-# for loop string
+# A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string)
 for x in "Python":
     print(x, end=" ")
 else:
     print(" ")
     print("Finally finished!")
 
-# for loop numbers
+# The range() function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and ends at a specified number.
 print("Printing range(5) loop:")
 for x in range(5):
     print(x, end=" ")
 
 print(" ")
-print("Printing range(2,5) loop:")
-for x in range(2,5):
+print("Printing range(2,6) loop:")
+for x in range(2,6):
     print(x, end=" ")
 
 print(" ")
