@@ -14,3 +14,4 @@ def myFun(**kwargs):
     return sum(kwargs.values())
 
 print("The sum of all the element of the list is: ", myFun(first=1, second=2, third=3, fourth=4, last=5))
+
