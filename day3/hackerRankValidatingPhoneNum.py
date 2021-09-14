@@ -8,9 +8,10 @@ def verify_phone_num(phone_num):
     return "YES" if bool(re.match(r'[789]\d{9}$', phone_num)) else "NO"
 
 
+# Reading the size of the input, must be between 1 and 10
 N = int(input("Enter number of inputs: "))
-while N<1 or N > 10:
-    N = input("Enter number of inputs: ")
+while N < 1 or N > 10:
+    N = int(input("Enter number of inputs: "))
 
 phone_numbers = [input() for _ in range(N)]
 
@@ -19,7 +20,7 @@ for i in range(len(phone_numbers)):
 
 
 # Short solution
-M = int(input())
+# M = int(input())
 
-for _ in range(M):
-    print("YES" if bool(re.match(r'[789]\d{9}$', input())) else "NO")
+# for _ in range(M):
+#     print("YES" if bool(re.match(r'[789]\d{9}$', input())) else "NO")
