@@ -1,5 +1,5 @@
 # Task 1: Convert a dictionary object to JSON and then convert it back to dictionary. 
-# The ductuinary to convert:
+# The dictionary to convert:
 a_dict = [
     {
         "name": "gara",
@@ -48,7 +48,7 @@ a_dict = [
 # JSON is used for storing it or sending it around between programs.
 
 #Importing JSON Package in Python
-import json
+import json, xmltodict
 
 # json.dumps() - This method allows you to convert a python object into a serialized JSON object.
 # json.dump() - This method allows you to convert a python object into JSON and additionally allows you to store the information into a file (text file)
@@ -59,14 +59,29 @@ def convert_dict_json(a_dict):
 # json.loads() - Deserializes a JSON object to a standard python object.
 # json.load() - Deserializes a JSON file object into a standard python object.
 def convert_json_dict(my_json):
-    return json.loads(my_json, )
+    return json.loads(my_json)
 
-new_json = convert_dict_json(a_dict)
-print(f"Result of converting a dictionary to JSON:\n{new_json}\nType of the result is a JSON string format: {type(new_json)}\n")
-
-new_dict = convert_json_dict(new_json)
-print(f"Result of converting a JSON to dictionary:\n{json.dumps(new_dict, indent=4)}\nType of the result is a dictionary: {type(new_dict)}")
+# new_json = convert_dict_json(a_dict)
+# print(f"Result of converting a dictionary to JSON:\n{new_json}\nType of the result is a JSON string format: {type(new_json)}\n")
+#
+# new_dict = convert_json_dict(new_json)
+# print(f"Result of converting a JSON to dictionary:\n{json.dumps(new_dict, indent=4)}\nType of the result is a dictionary: {type(new_dict)}")
 
 # Convert a dictionary object to XML and then convert it back to dictionary. 
+def convert_dict_xml(a):
+    items = {'user': a_dict}
+    main_root = {'users': items}
+    return xmltodict.unparse(main_root, pretty=True)
+
+def convert_xml_dict(my_xml):
+    return xmltodict.parse(my_xml)
+
+
+new_xml = convert_dict_xml(a_dict)
+print(f"Result of converting a dictionary to XML:\n{new_xml}\nType of the result is a JSON string format: {type(new_xml)}\n")
+
+new_dict = convert_xml_dict(new_xml)
+new_dict = new_dict['users']['user']
+print(f"Result of converting a XML to dictionary:\n{json.dumps(new_dict, indent=4)}\nType of the result is a dictionary: {type(new_dict)}")
 
 
