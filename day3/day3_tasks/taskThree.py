@@ -8,20 +8,21 @@ def get_unique_ip_using_string_manipulation(file):
             log_ips.append(ip)
     return log_ips
 
+with open("task3.log","r") as file:
+    print("Getting unique IP using string manipulation:")
+    print("\n".join(get_unique_ip_using_string_manipulation(file)))
+
 # Using regex
 import re
 
 def get_unique_ip_using_regex(file):
     log_ips = []
     for line in file:
-        ip = re.search("\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", line)
+        ip = re.search("(\d{1,3}\.){3}\d{1,3}", line)
         if log_ips.count(ip.group()) == 0:
             log_ips.append(ip.group())
     return log_ips
 
-with open("task3.log","r") as file:
-    print("Getting unique IP using string manipulation:")
-    print("\n".join(get_unique_ip_using_string_manipulation(file)))
 with open("task3.log","r") as file:
     print("Getting unique IP using regex:")
     print("\n".join(get_unique_ip_using_regex(file)))
