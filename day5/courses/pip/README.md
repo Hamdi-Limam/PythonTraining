@@ -71,3 +71,69 @@ When you want to replicate the environment in another system, you can run pip in
 ```
 pip install -r requirements.txt
 ```
+### Fine-Tuning Requirements
+The problem with hardcoding the versions of your packages and their dependencies is that packages are updated frequently with bug and security fixes, and you probably want to leverage those as soon as they are published.
+
+The requirements file format allows you to specify dependency versions using logical operators that give you a bit of flexibility to insure packages are updated, but still define the base versions of a package.
+
+Open the requirements.txt file in your favorite editor and make the following changes:
+```
+certifi>=2018.11.29
+chardet>=3.0.4
+idna>=2.8
+requests>=2.21.0, <3.0
+urllib3>=1.24.1
+```
+You can change the logical operator to >= to tell pip to install an exact or greater version that has been published. When you set a new environment using the requirments.txt file, pip looks for the latest version that satisfies the requirement and installs it.
+
+In an ideal world, new versions of packages would be backwards compatible and would never introduce new bugs. Unfortunately, **new versions can introduce changes that will break your application**. The requirements file syntax supports additional [version specifiers](https://www.python.org/dev/peps/pep-0440/#version-specifiers) to fine-tune your requirements.
+
+Changing the version specifier for the requests package ensures that any version greater or equal to 3.0 does not get installed. The pip documentation provides all the information about the [requirements file format](https://pip.pypa.io/en/stable/reference/pip_install/#requirements-file-format), and you can consult it to learn more about it.
+
+### Production vs Development Dependencies
+Not all packages that you install during the development of your applications are going to be application dependencies. There are many packages published to PyPI that are development tools or libraries that you want to leverage during the development process.
+
+As an example, you’ll probably want to unit test your application, so you need a unit test framework. A popular framework for unit testing is pytest. You want to install it in your development environment, but you do not want it in your production environment because it isn’t an application dependency.
+
+You can create a second requirements file (requirements_dev.txt) to list additional tools to set up a development environment. This requires you to use pip to install both requirement files: requirements.txt and requirements_dev.txt. Fortunately, pip allows you to specify additional parameters within a requirements file. You can modify requirements_dev.txt to also install the requirements from the production requirements.txt file:
+```
+# In requirements_dev.txt
+-r requirements.txt
+pytest>=4.2.0
+``` 
+
+### Freezing Requirements for Production
+You created the production and development requirement files and added them to source control. The files use flexible version specifiers to ensure that you leverage bug fixes published by your dependencies. You are also testing your application and are ready to deploy it to production.
+
+You probably want to ensure that the versions of the dependencies you deploy to production are the exact same versions you used in your integration pipeline or build process because you know all the tests pass and the application works.
+
+The current version specifiers don’t guarantee that the same versions will be deployed to production, so you want to freeze the production requirements as you saw earlier.
+
+You create a clean production virtual environment and install the production requirements using the `requirements.txt` file. Once the requirements are installed, you can freeze the specific versions, dumping the output to a `requirements_lock.txt` file that you use in production. The `requirements_lock.txt` file will contain exact versions specifiers and can be used to replicate the environment.
+
+### Finding Packages to Use
+As you become a more experienced Pythonista, there’ll be a set of packages that you’ll know by heart and that you’ll use in most of your applications. The requests and pytest packages are good candidates to become useful tools in your Python toolbox.
+
+There will be times though when you will need to solve a different problem, and you will want to look for a different tool or library that can help you with it. As you can see above, pip help shows that there is a `search` command that looks for packages published to PyPI.
+
+The command takes a set of options listed above and a `<query>`. The query is just a string to search for and will match packages and their descriptions.
+
+Most of the time, you want to search for packages directly in the [PyPI](https://pypi.org/) website. PyPI provides search capabilities for its index and a way to filter results by the metadata exposed in the package, like framework, topic, development status, and so on.
+
+Another option to find a package is to Google it. Widely used Python libraries will show up at the top of google searches, and you should be able to find a link to the package in PyPI or its source code repository.
+
+### Uninstalling Packages
+Once in a while, you will have to uninstall a package. You either found a better library to replace it, or it is something you don’t really need. Uninstalling packages can be a bit tricky.
+
+Notice that, when you installed `requests`, `pip` installed other dependencies too. The more packages you install, the bigger the chances that multiple packages depend on the same dependency. This is where the `show` command in pip comes in handy.
+
+Before you uninstall a package, make sure you run the `show` command for that package. Notice the last two fields `Requires` and `Required-by`. The `show` command tells us that requests requires `urllib3, certifi, chardet, and idna`. You probably want to uninstall those two. You can also see that requests is not required by any other package, so it is **safe to uninstall it**.
+
+You should run the `show` command against all of the requests dependencies to make sure that no other libraries also depend on them. Once you understand the dependency order of the packages you want to uninstall, you can remove them using the `uninstall` command:
+```
+pip uninstall certifi
+```
+You can specify all the packages you want to uninstall in a single call: 
+```
+pip uninstall -y urllib3 chardet idna requests
+```
