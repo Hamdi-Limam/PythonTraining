@@ -28,8 +28,14 @@ The great thing about this is that there are no limits to the number of environm
 ### Using Virtual Environments
 To get started, if you’re not using Python 3, you’ll want to install the `virtualenv` tool with `pip`. If you are using Python 3, then you should already have the `venv` module from the standard library installed.
 
+Start by making a new directory to work with:
+``` 
+$ mkdir python-virtual-environments && cd python-virtual-environments
+```
 Create a new virtual environment inside the directory:
-> python3 -m venv env
+```
+python3 -m venv env
+```
 The Python 3 venv approach has the benefit of forcing you to choose a specific version of the Python 3 interpreter that should be used to create the virtual environment. This avoids any confusion as to which Python installation the new environment is based on.
 
 From Python 3.3 to 3.4, the recommended way to create a virtual environment was to use the `pyvenv` command-line tool that also comes included with your Python 3 installation by default. But on 3.6 and above, `python3 -m venv` is the way to go.
