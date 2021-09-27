@@ -1,0 +1,2 @@
+File to be first renamed to file1.txt using os.rename() 
+then removed using os.remove()
