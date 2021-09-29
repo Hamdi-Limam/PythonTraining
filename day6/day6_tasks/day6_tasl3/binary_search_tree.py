@@ -42,12 +42,14 @@ class Node:
             self = self.left
         return self.val
 
-        # Search and return the min
+    # Search and return the max
     def get_max(self):
         while self.right:
             self = self.right
         return self.val
             
+
+
     # Print Method,  in-order traversal
     def print_tree(self):
         if self.left is not None:
@@ -55,6 +57,7 @@ class Node:
         print(self.val, end=" ")
         if self.right is not None:
             self.right.print_tree()
+
 
 if __name__ == "__main__":
     a = Node(8)
@@ -78,5 +81,5 @@ if __name__ == "__main__":
     print("Printing the min node in the tree:", end=" ")
     print(a.get_min())
 
-    print("Printing the min node in the tree:", end=" ")
+    print("Printing the max node in the tree:", end=" ")
     print(a.get_max())
