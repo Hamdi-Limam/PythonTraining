@@ -36,7 +36,18 @@ class Node:
             else:
                 print("Item is not present in tree!")
 
+    # Search and return the min
+    def get_min(self):
+        while self.left:
+            self = self.left
+        return self.val
 
+        # Search and return the min
+    def get_max(self):
+        while self.right:
+            self = self.right
+        return self.val
+            
     # Print Method,  in-order traversal
     def print_tree(self):
         if self.left is not None:
@@ -57,10 +68,15 @@ if __name__ == "__main__":
     a.insert(14)
     a.insert(13)
 
-    print("Search item 6 in the tree")
+    print("Search item 6 in the tree:", end=" ")
     a.search_item(1)
 
-    print("Printing the tree")
+    print("Printing the tree:")
     a.print_tree()
+    print()
 
-    
+    print("Printing the min node in the tree:", end=" ")
+    print(a.get_min())
+
+    print("Printing the min node in the tree:", end=" ")
+    print(a.get_max())
