@@ -19,21 +19,19 @@ The insert method, what this method is doing is checking if the data is lesser t
 ```
     # Insert method to create nodes
     def insert(self, data):
-        if self.data is not None:
-            if self.data < data:
-                if self.left is None:
-                    self.left = Node(data)
-                else:
-                    self.left.insert(data)
-
-            elif self.data > data:
+        if self.val is not None:
+            if self.val < data:
                 if self.right is None:
                     self.right = Node(data)
                 else:
                     self.right.insert(data)
-
+            elif self.val > data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.insert(data)
             else:
-                self.data = data
+                self.val = data
 ```
 A new key is always inserted at the leaf. We start searching a key from the root until we hit a leaf node. Once a leaf node is found, the new node is added as a child of the leaf node. 
 1. Start from the root. 
@@ -57,3 +55,4 @@ Algorithm Inorder(tree):
 1. Traverse the left subtree, i.e., call Inorder(left-subtree)
 2. Visit the root.
 3. Traverse the right subtree, i.e., call Inorder(right-subtree)
+
