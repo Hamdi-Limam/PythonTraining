@@ -56,3 +56,37 @@ Algorithm Inorder(tree):
 2. Visit the root.
 3. Traverse the right subtree, i.e., call Inorder(right-subtree)
 
+# Search item in the tree
+```
+    # Search item in a tree
+    def search_item(self, item):
+        if self.val == item:
+            print("Item is found!")
+            return
+        if self.val < item:
+            if self.right:
+                self.right.search_item(item)
+            else:
+                print("Item is not present in tree!")
+        else:
+            if self.left:
+                self.left.search_item(item)
+            else:
+                print("Item is not present in tree!")
+
+```
+Search algo:
+1. Check if root value is equal to the item
+2. Traverse the left subtree, if item is smaller than the root value
+3. Traverse the right subtree, if item is bigger than the root value
+
+## Delete node from a tree
+There are three cases when deleting a node from a tree:
+1. Node to be deleted is the leaf (0 child): simply remove from the tree
+2. Node to be deleted has only one child: Copy the child to the node and delete the child
+3. Node to be deleted has two children: find inorder successor of the node. Copy contents of the inorder successor to the node and delete the inorder successor. Note that inorder predecessor can also be used. 
+
+The important thing to note is, inorder successor is needed only when the right child is not empty. In this particular case, inorder successor can be obtained by **finding the minimum value in the right child of the node**.
+
+Check code of the file `binary_search_tree.py`
+
