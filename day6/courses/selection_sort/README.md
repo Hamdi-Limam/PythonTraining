@@ -55,7 +55,7 @@ for i in range(len(num)):
     min_val = min(num[i:])
 
     # Search for index of min value
-    min_index = num.index(min_val)
+    min_index = num.index(min_val, i)
 
     # Swap min value with 1st index
     num[i], num[min_index] = num[min_index], num[i]
