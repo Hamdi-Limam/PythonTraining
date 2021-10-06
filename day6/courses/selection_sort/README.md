@@ -43,3 +43,22 @@ selectionSort(data, size)
 print('Sorted Array in Ascending Order:')
 print(data)
 ```
+
+
+Shorter solution:
+```
+num = [5,15,3,12,17,0]
+
+for i in range(len(num)):
+    
+    # Search for min value
+    min_val = min(num[i:])
+
+    # Search for index of min value
+    min_index = num.index(min_val)
+
+    # Swap min value with 1st index
+    num[i], num[min_index] = num[min_index], num[i]
+
+print(num)
+```
