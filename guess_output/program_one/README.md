@@ -5,7 +5,7 @@ Like you see, we got x is an empty list:
 x = []
 ```
 
-Then, we got a if-else condition statement, if the condition is True, we will print x and True. Else, we will print x and False.
+Then, we got an if-else condition statement, if the condition is True, we will print x and True. Else, we will print x and False.
 
 In python, empty sequence, mapping and False, Zero of any numeric type and None are considered as False Values:
 * empty list: [] -> False
