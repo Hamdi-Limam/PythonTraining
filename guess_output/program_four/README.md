@@ -1,6 +1,6 @@
 ## Explanation of the fourth program
 
-First of all, we got a list named `list1` that contains two.
+First of all, we got a list named `list1` that contains two strings.
 
 Next, we can see a for-loop. Inside it, we are applying `.append()` method on each element of the list.
 
