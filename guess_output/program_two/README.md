@@ -1,4 +1,4 @@
-## Explanation of program two
+## Explanation of the second program
 
 This program is based on:
 1. True and False Value

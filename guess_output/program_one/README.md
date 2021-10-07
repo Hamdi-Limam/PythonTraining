@@ -1,4 +1,4 @@
-## Explanation for the first program
+## Explanation of the first program
 
 Like you see, we got x is an empty list:
 ```
