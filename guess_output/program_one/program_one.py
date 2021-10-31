@@ -1,4 +1,4 @@
-x = {0: False}
+x = []
 
 if x:
     print(x, "True")
